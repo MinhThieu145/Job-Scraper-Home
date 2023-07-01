@@ -25,7 +25,6 @@ phases:
       - echo "Updating ECS service..."
       - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
       - echo "End of script"
-      - echo "Done"
 
 artifacts:
   files:
