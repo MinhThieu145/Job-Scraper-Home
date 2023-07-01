@@ -5,7 +5,9 @@ phases:
     commands:
       - echo "Logging in to ECR"
       - aws --version
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i1i8s0z9
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCOUNT_ID=238101178196
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - REPOSITORY_URI=public.ecr.aws/i1i8s0z9/indeed-scraper
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
