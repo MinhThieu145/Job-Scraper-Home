@@ -23,7 +23,6 @@ phases:
   post_build:
     commands:
       - echo "Updating ECS service..."
-      - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
       - echo "End of script"
 
 artifacts:
