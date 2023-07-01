@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo "Logging in to ECR"
-      - echo $AWS_ECR_REGISTRY_PASSWORD | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY_URL
+      - aws ecr get-login-password --region REGION | docker login --username AWS --password-stdin DOCKER_ID.dkr.ecr.REGION.amazonaws.com
       - REPOSITORY_URI=public.ecr.aws/i1i8s0z9/indeed-scraper
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
