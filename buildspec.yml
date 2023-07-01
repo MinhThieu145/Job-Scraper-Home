@@ -8,7 +8,7 @@ phases:
       - AWS_DEFAULT_REGION=us-east-1
       - AWS_ACCOUNT_ID=238101178196
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - REPOSITORY_URI=public.ecr.aws/i1i8s0z9/indeed-scraper
+      - REPOSITORY_URI=238101178196.dkr.ecr.us-east-1.amazonaws.com/indeed-scraper
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
 
