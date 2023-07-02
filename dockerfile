@@ -31,4 +31,10 @@ RUN apt-get -y install google-chrome-stable
 # add the main.py
 COPY main.py .
 
+# add scraper
+COPY scraper.py .
+
+# add job_description_analyzer
+COPY job_description_analyzer.py .
+
 ENTRYPOINT [ "python3" , "main.py" ]
