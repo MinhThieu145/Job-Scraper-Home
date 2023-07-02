@@ -22,7 +22,6 @@ phases:
   post_build:
     commands:
       - echo "Updating ECS service..."
-      - echo "End of script"
 
 artifacts:
   files:
