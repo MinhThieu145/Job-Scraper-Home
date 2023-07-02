@@ -8,7 +8,6 @@ import os
 # import selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -18,7 +17,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 def SetupChrome():
     # set up chrome options
     global driver
-    chrome_options = Options()
+    chrome_options = webdriver.ChromeOptions()
 
     # headless
     chrome_options.add_argument("--headless=new")    
@@ -31,7 +30,8 @@ def SetupChrome():
     # full screen
     chrome_options.add_argument("--start-maximized")
     # set up driver
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    service = webdriver.chrome.service.Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # go to indeed
     driver.get('https://www.indeed.com/')
