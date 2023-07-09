@@ -15,7 +15,7 @@ from tenacity import (
 # open ai stuff
 import openai
 
-openai.api_key='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'    
+openai.api_key='sk-xxxxxx' # fill in your open ai key here if you want to use open ai to analyze
 SLEEP_TIME_OPEN_AI_EACH_ROW = 1
 SLEEP_TIME_WHEN_FAILED = 60
 BUCKET_NAME_RESULT = 'job-description-process'
@@ -107,31 +107,31 @@ def UploadDataFrameToS3(df, folder_name, file_name):
 
 def main(df, df_name):
 
-    # loop through each row
-    for index, row in df.iterrows():
-        # get the column called job_title
-        job_title = row['job_title']
+    # # loop through each row
+    # for index, row in df.iterrows():
+    #     # get the column called job_title
+    #     job_title = row['job_title']
 
-        # get the column called job_link
-        job_link = row['job_link']
+    #     # get the column called job_link
+    #     job_link = row['job_link']
 
-        # get the column called description
-        job_description = row['description']
+    #     # get the column called description
+    #     job_description = row['description']
 
-        # get the job_summary
-        job_summary = GetSummaryPrompt(job_description)
+    #     # get the job_summary
+    #     job_summary = GetSummaryPrompt(job_description)
 
-        # get the key details
-        key_details = GetKeyDetails(job_description)
+    #     # get the key details
+    #     key_details = GetKeyDetails(job_description)
 
-        # add the job_summary to the dataframe
-        df.loc[index, 'job_summary'] = job_summary
+    #     # add the job_summary to the dataframe
+    #     df.loc[index, 'job_summary'] = job_summary
 
-        # add the key_details to the dataframe
-        df.loc[index, 'key_details'] = key_details
+    #     # add the key_details to the dataframe
+    #     df.loc[index, 'key_details'] = key_details
 
-        # Upload to S3
-        UploadDataFrameToS3(df=df, folder_name=folder_name, file_name=f'{df_name}.csv')
+    # Upload to S3
+    UploadDataFrameToS3(df=df, folder_name=folder_name, file_name=f'{df_name}.csv')
 
 
 
