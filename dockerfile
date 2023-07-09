@@ -1,6 +1,6 @@
 # based image: Ubuntubased. BTW, for the PYTHON:3.9 like you used last time. It used the Debianbased image
 
-FROM public.ecr.aws/lts/ubuntu:22.10
+FROM public.ecr.aws/lts/ubuntu:20.04_stable
 
 # install a few things
 RUN apt-get update && apt-get install -y \
